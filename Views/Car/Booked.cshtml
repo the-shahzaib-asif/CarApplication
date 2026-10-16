@@ -1,0 +1,50 @@
+﻿@model List<WebApplication2.Models.Car>
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary mb-0">Booked Cars</h2>
+    <a href="/Car/Index" class="btn btn-outline-secondary">Back to Cars</a>
+</div>
+
+
+@if (Model == null || Model.Count == 0)
+{
+
+    <div class="alert alert-warning text-center" role="alert">
+        No car booked yet!. <a href="/Car/Index" class="alert-link">Check Available Car</a>.
+    </div>
+}
+else
+{
+
+    <div class="table-responsive shadow-sm">
+        <table class="table table-striped table-hover table-bordered align-middle mb-0">
+
+
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Car Name</th>
+                    <th>Price Per Day</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var car in Model)
+                {
+                    <tr>
+                        <td>@car.Id</td>
+                        <td class="fw-bold">@car.Name</td>
+                        <td class="text-danger">PKR @car.PricePerDay</td>
+                        <td>
+
+                            <span class="badge bg-warning text-dark">Booked</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
